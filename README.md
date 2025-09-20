@@ -1,7 +1,7 @@
 Maze Generator & Solver with Joystick Control
 
 A C++ project that:
-  Generates a random maze using Prim’s algorithm
+  Generates a random maze using Prim’s algorithm 
   Finds the optimal path using A*
   Displays the maze and path with SFML
   Lets the user traverse the maze with a joystick via an Arduino serial interface
