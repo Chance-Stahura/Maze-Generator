@@ -24,3 +24,15 @@ logs/
 *.temp
 tmp/
 temp/
+
+# Arduino build artifacts
+*.hex
+*.elf
+*.bin
+*.eep
+*.map
+*.d
+*.o
+
+# Arduino IDE backup files
+*.ino.*
