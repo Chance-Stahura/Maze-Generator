@@ -10,6 +10,8 @@ A C++ project that:
     
     Lets the user traverse the maze with a joystick via an Arduino serial interface
 
+
+
 Features : 
 
     Random maze generation on any grid size
@@ -27,6 +29,10 @@ Tech Stack :
     SFML (graphics, input, rendering)
     
     Arduino (serial communication for joystick input)
+            The Arduino sketch used for joystick input is in [`arduino/joystick_control.ino`]                (arduino/joystick_control.ino).
+
+            Upload it to your Arduino board using the Arduino IDE, then connect over USB.  
+            The PC program will read joystick input from the serial port.
     
     CMake (build system)
 
