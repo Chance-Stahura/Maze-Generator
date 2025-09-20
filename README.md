@@ -6,19 +6,19 @@ A C++ project that:
   Displays the maze and path with SFML
   Lets the user traverse the maze with a joystick via an Arduino serial interface
 
-Features
+Features : 
   Random maze generation on any grid size
   A* pathfinding for optimal solution
   Interactive rendering with SFML
   Hardware joystick integration using Arduino
 
-Tech Stack
+Tech Stack : 
   C++11
   SFML (graphics, input, rendering)
   Arduino (serial communication for joystick input)
   CMake (build system)
 
-Planned Updates
+Planned Updates : 
   Interactive Interface
     Add a simple UI overlay (timer, move counter, restart option)
     Display current path progress vs. optimal path
