@@ -5,11 +5,12 @@
 #include <string>
 #include <map>
 #include <cmath>
+#include <climits>
 #include <ctime>
 #include <SFML/Graphics.hpp>
 #include <SFML/Window.hpp>
 
-#include "C:/Users/koa/Desktop/maze_generator/libserialport/include/libserialport/libserialport.h"
+#include <libserialport.h>
 
 using namespace std;
 
@@ -910,18 +911,3 @@ int main() {
 
     return 0;
 }
-
-/*
-maze generator/best path visualization compile command:
-!!!DOES NOT WORK WITH JOYSTICK INPUT!!!
-
-g++ mazeGenerator.cpp -o maze.exe -IC:\Users\koa\Desktop\SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit\SFML-2.6.1\include -LC:\Users\koa\Desktop\SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit\SFML-2.6.1\lib -lsfml-graphics -lsfml-window -lsfml-system
-
-*/
-
-/*
-joystick input compile command:
-
-g++ mazeGenerator.cpp -o maze.exe -IC:\Users\koa\Desktop\SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit\SFML-2.6.1\include -LC:\Users\koa\Desktop\SFML-2.6.1-windows-gcc-13.1.0-mingw-64-bit\SFML-2.6.1\lib -LC:\Users\koa\Desktop\maze_generator\libserialport\lib -lsfml-graphics -lsfml-window -lsfml-system -lserialport -lsetupapi -lcfgmgr32 -lopengl32 -lglu32
-
-*/
