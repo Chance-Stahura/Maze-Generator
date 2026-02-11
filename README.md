@@ -24,7 +24,7 @@ Features :
 
 Tech Stack : 
 
-    C++11
+    C++20
     
     SFML (graphics, input, rendering)
     
@@ -33,8 +33,25 @@ Tech Stack :
 
             Upload it to your Arduino board using the Arduino IDE, then connect over USB.  
             The PC program will read joystick input from the serial port.
-    
-    CMake (build system)
+
+
+
+Installation and Build (WSL/Linux) :
+    This project is optiomized for Linux and WSL2. Follow these steps to set up your environment and compile the application
+
+        1. install system dependencies
+            sudo apt update && sudo apt install -y build-essential cmake libsfml-dev libserialport-dev
+
+        2. Build the project
+            mkdir -p build
+            cd build
+            cmake ..
+            cmake --build .
+
+        3. Run the application
+            ./maze_app
+
+
 
 Planned Updates : 
 
