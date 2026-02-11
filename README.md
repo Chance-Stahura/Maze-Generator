@@ -37,7 +37,8 @@ Tech Stack :
 
 
 Installation and Build (WSL/Linux) :
-    This project is optiomized for Linux and WSL2. Follow these steps to set up your environment and compile the application
+
+    This project is optimized for Linux and WSL2. Follow these steps to set up your environment and compile the application
 
         1. install system dependencies
             sudo apt update && sudo apt install -y build-essential cmake libsfml-dev libserialport-dev
