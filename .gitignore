@@ -19,6 +19,11 @@ secrets.*
 *.log
 logs/
 
+# build and executables
+*.exe
+build/
+src/maze.exe
+
 # Temporary files
 *.tmp
 *.temp

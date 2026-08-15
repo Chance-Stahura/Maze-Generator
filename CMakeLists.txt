@@ -15,6 +15,7 @@ find_library(SERIALPORT_LIBRARY serialport)
 add_executable(maze_app src/mazeGenerator.cpp)
 
 # Link everything
+target_include_directories(maze_app PRIVATE include)
 target_include_directories(maze_app PRIVATE ${SERIALPORT_INCLUDE_DIR})
 target_link_libraries(maze_app 
     sfml-graphics 
