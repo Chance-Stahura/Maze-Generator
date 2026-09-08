@@ -1,120 +1,199 @@
 # Maze Generator & Solver with Joystick Control
 
-## A C++ project that:
+A C++ application that generates random mazes, finds an optimal solution using A*, and allows the user to navigate the maze using a physical joystick connected through an Arduino.
 
-   # Generates a random maze using Prim’s algorithm 
-    
-   # Finds the optimal path using A*
-    
-   # Displays the maze and path with SFML
-    
-   # Lets the user traverse the maze with a joystick via an Arduino serial interface
+The project combines maze-generation and pathfinding algorithms with interactive graphics and hardware input.
 
+## Features
 
-## Features : 
+- Random maze generation using Prim's algorithm
+- A* pathfinding for finding an optimal solution
+- Interactive maze visualization using SFML
+- Physical joystick control through an Arduino
+- Serial communication between the Arduino and host application
+- Support for different maze grid sizes
 
-   # Random maze generation on any grid size
-    
-   # A* pathfinding for optimal solution
-    
-   # Interactive rendering with SFML
-    
-   # Hardware joystick integration using Arduino
+## Tech Stack
 
+- **C++20** — core application and algorithms
+- **SFML** — graphics, window management, and rendering
+- **Arduino** — joystick input
+- **Serial communication** — communication between the Arduino and C++ application
+- **CMake** — project configuration and build system
 
-## Tech Stack : 
+## Project Structure
 
-   # C++20
-    
-   # SFML (graphics, input, rendering)
-    
-   # Arduino (serial communication for joystick input)
-   
-   # The Arduino sketch used for joystick input is in [`arduino/Analog_Joystick.ino`]                (arduino/Analog_Joystick.ino).
+```text
+Maze-Generator/
+├── arduino/
+│   └── Analog_Joystick.ino
+├── include/
+│   ├── gameLogic.h
+│   ├── joystick.h
+│   ├── mazeGenerator.h
+│   └── render.h
+├── src/
+│   └── mazeGenerator.cpp
+├── .env.example
+├── .gitignore
+├── CMakeLists.txt
+└── README.md
+```
 
-   # Upload it to your Arduino board using the Arduino IDE, then connect over USB. The PC program will read joystick input from the serial port.
+The project is divided into modular components for maze generation, game logic, joystick communication, and rendering.
 
+## Arduino Setup
 
-## Installation and Build (WSL/Linux) :
+The Arduino sketch used for joystick input is located at:
 
-   ### This project is optimized for Linux and WSL2. Follow these steps to set up your environment and compile the application
+```text
+arduino/Analog_Joystick.ino
+```
 
-   # 1. install system dependencies
-   ### sudo apt update && sudo apt install -y build-essential cmake libsfml-dev libserialport-dev
+Upload the sketch to your Arduino board using the Arduino IDE and connect the Arduino to your computer over USB.
 
-   # 2. Build the project
-   ### mkdir -p build
-   ### cd build
-   ### cmake ..
-   ### cmake --build .
+The C++ application reads the joystick state from the Arduino through a serial connection and uses that input to control movement through the maze.
 
-   # 3. Run the application
-   ### ./maze_app
+## Installation and Build
 
-   ## Arduino USB Setup (WSL2)
+The project is designed primarily for Linux and WSL2.
 
-   ### WSL2 may not automatically detect an Arduino connected through USB.
+### 1. Install System Dependencies
 
-   ### If the application displays "No valid ports found!", follow these steps.
+```bash
+sudo apt update
+sudo apt install -y build-essential cmake libsfml-dev libserialport-dev
+```
 
-   # 1. Install usbipd-win from Windows PowerShell (Administrator)
-   ### winget install --interactive --exact dorssel.usbipd-win
+### 2. Build the Project
 
-   # 2. Find the Arduino USB device
-   ### usbipd list
-   ### Look for a USB Serial Device or Arduino device and note its BUSID.
+From the project root:
 
-   # 3. Bind the Arduino to usbipd (Administrator)
-   ### usbipd bind --busid 1-2
-   ### Replace 1-2 with your Arduino's BUSID.This normally only needs to be done once.
+```bash
+mkdir -p build
+cd build
+cmake ..
+cmake --build .
+```
 
-   # 4. Attach the Arduino to WSL
-   ### usbipd attach --wsl --busid 1-2
+### 3. Run the Application
 
-   # 5. Verify the Arduino is visible inside WSL
-   ### ls /dev/ttyACM* /dev/ttyUSB*
-   ### A connected Arduino will typically appear as: /dev/ttyACM0
+From the `build` directory:
 
-   # 6. If the serial port exists but cannot be opened, check permissions groups
+```bash
+./maze_app
+```
 
-   ## Note:
-   ### usbipd bind is persistent, but the WSL attachment may need to be repeated after restarting WSL, rebooting Windows, or reconnecting the Arduino: usbipd attach --wsl --busid <BUSID>
+## Arduino USB Setup for WSL2
 
-## Recent Updates:
+WSL2 may not automatically detect an Arduino connected to Windows through USB.
 
- ### Code Quality
-  
-   # Refactored into modular components to improve readability (maze generation, maze logic, joystick input/output, rendering)   
+If the application reports:
 
+```text
+No valid ports found!
+```
 
-## Planned Updates : 
+use the following steps to expose the Arduino USB device to WSL.
 
-  ### Interactive Interface
-    
-   # Add a simple UI overlay (timer, move counter, restart option)
-      
-   # Display current path progress vs. optimal path
-  
-  ### Gameplay Features
-  
-   # Difficulty levels (different maze sizes, generation styles)
-      
-   # Optional keyboard controls as a fallback to the joystick
-      
-  ### Code Quality
-     
-   # Add automated tests and CI builds via GitHub Actions
+### 1. Install usbipd-win
 
+Open Windows PowerShell as Administrator and run:
 
-## How AI should help:
+```powershell
+winget install --interactive --exact dorssel.usbipd-win
+```
 
-   # DO NOT PRODUCE OR UPDATE CODE
+### 2. Find the Arduino USB Device
 
-   # You are my personal mentor and are VERY invested in my learning and understanding
+```powershell
+usbipd list
+```
 
-   # Help enforce best coding practices and standards
+Find the Arduino or USB Serial Device in the list and note its `BUSID`.
 
-   # Propose fixes to help optimize code base
+### 3. Bind the Arduino
 
-   # Propose additional features to improve user experience
-  
+From an Administrator PowerShell:
+
+```powershell
+usbipd bind --busid 1-2
+```
+
+Replace `1-2` with the BUSID reported by `usbipd list`.
+
+Binding normally only needs to be performed once.
+
+### 4. Attach the Arduino to WSL
+
+```powershell
+usbipd attach --wsl --busid 1-2
+```
+
+Again, replace `1-2` with the appropriate BUSID.
+
+### 5. Verify the Arduino Inside WSL
+
+From the WSL terminal:
+
+```bash
+ls /dev/ttyACM* /dev/ttyUSB*
+```
+
+A connected Arduino will typically appear as:
+
+```text
+/dev/ttyACM0
+```
+
+### 6. Check Serial Port Permissions
+
+If the serial device exists but the application cannot open it, verify that your Linux user has permission to access the serial device.
+
+## WSL2 USB Note
+
+`usbipd bind` is persistent, but attaching the device to WSL may need to be repeated after:
+
+- Restarting WSL
+- Rebooting Windows
+- Disconnecting and reconnecting the Arduino
+
+To reattach the device:
+
+```powershell
+usbipd attach --wsl --busid <BUSID>
+```
+
+## Recent Updates
+
+### Code Quality
+
+The original application logic has been refactored into modular components to improve readability, maintainability, and separation of responsibilities:
+
+- Maze generation
+- Maze and gameplay logic
+- Joystick input/output
+- SFML rendering
+
+## Planned Updates
+
+### Interactive Interface
+
+- Add a UI overlay containing a timer, move counter, and restart option
+- Display the player's current path progress compared with the optimal path
+
+### Gameplay
+
+- Add difficulty levels using different maze sizes and generation configurations
+- Add optional keyboard controls as a fallback when a joystick is unavailable
+
+### Code Quality
+
+- Add automated tests
+- Add continuous integration builds using GitHub Actions
+
+## About the Project
+
+This project explores the integration of algorithms, graphics programming, and physical hardware in a single C++ application.
+
+The maze is procedurally generated using Prim's algorithm, while A* is used to determine an optimal path through the generated maze. SFML provides the graphical visualization, and an Arduino-based joystick provides physical user input through serial communication.
